@@ -5,6 +5,9 @@ library(igraph)
 #loading the network
 network = loadNetwork("wnt.txt")
 
+#set random seed for reproducibility
+set.seed(1982)
+
 #plotting the basins of the attractors from 1000 starting states
 attr <- getAttractors(network, method="random", startStates=1000)
 plotStateGraph(attr4, piecewise=T)
@@ -24,5 +27,10 @@ attr3 = getAttractors(ly)
 plotAttractors(attr3, allInOnePlot=T, onColor="red", offColor="cyan")
 
 #robustness assessment
-set.seed(1982)
+res <- testNetworkProperties(network,
+                       numRandomNets=100,
+                       testFunction="testAttractorRobustness",
+                       testFunctionParams = list(copies=100, perturb="functions$
+
+
 
